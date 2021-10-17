@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign_up</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+<form method="POST" action="/signup">
+    <div class="form-group">
+        <label for="username">User Name</label>
+        <input type="text" class="form-control" id="username" name="username">
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password">
+    </div>
+    <div class="form-group">
+        <label for="firstName">First name</label>
+        <input type="text" class="form-control" id="firstName" name="firstName">
+    </div>
+    <div class="form-group">
+        <label for="lastName">Last name</label>
+        <input type="text" class="form-control" id="lastName" name="lastName">
+    </div>
+    <div class="form-group">
+        <label for="dateOfBirth">DOB</label>
+        <input type="text" class="form-control" id="dateOfBirth" name="dateOfBirth">
+    </div>
+    <div class="form-group">
+        <label for="bio">Bio</label>
+        <input type="text" class="form-control" id="bio" name="bio">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<!--<form method="POST" action="/signup">-->
+<!--    <label for="username">User Name</label>-->
+<!--    <input id="username" name="username" type="text">-->
+
+<!--    <label for="password">Password</label>-->
+<!--    <input id="password" name="password" type="password">-->
+<!--    <label for="firstName">First name</label>-->
+<!--    <input id="firstName" name="firstName" type="text">-->
+<!--    <label for="lastName">Last name</label>-->
+<!--    <input id="lastName" name="lastName" type="text">-->
+<!--    <label for="dateOfBirth">DOB</label>-->
+<!--    <input id="dateOfBirth" name="dateOfBirth" type="text">-->
+<!--    <label for="bio">Bio</label>-->
+<!--    <input id="bio" name="bio" type="text">-->
+
+<!--    <button type="submit">Sign up</button>-->
+<!--</form>-->
+</body>
+</html>
