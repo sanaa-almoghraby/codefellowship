@@ -25,6 +25,10 @@ public class Post {
         this.user = user;
     }
 
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
     public String getBody() {
         return body;
     }

@@ -5,51 +5,21 @@
 
 <body>
 
+<main style="display: grid; grid-template-columns: repeat(2, 50% 50%)">
 
-<div>
-
-    <Card>
-        <ListGroup variant="flush">
-            <Card.Body>
-                <Card.Title>USER NAME</Card.Title>
-                <Card.Text class="list-group-item" th:text="${username}">
-                </Card.Text>
-            </Card.Body>
-
-            <Card.Body>
-                <Card.Title>FIRST NAME</Card.Title>
-                <Card.Text class="list-group-item" th:text="${firstName}">
-                </Card.Text>
-            </Card.Body>
-
-            <Card.Body>
-                <Card.Title>LAST NAME</Card.Title>
-                <Card.Text class="list-group-item" th:text="${lastName}">
-
-                </Card.Text>
-            </Card.Body>
-
-            <Card.Body>
-
-                <Card.Title>DATE OF BIRTH</Card.Title>
-                <Card.Text class="list-group-item" th:text="${dateOfBirth}">
-
-                </Card.Text>
-            </Card.Body>
-
-            <Card.Body>
-                <Card.Title>BIO</Card.Title>
-                <Card.Text class="list-group-item" th:text="${bio}">
-
-                </Card.Text>
-
-            </Card.Body>
-        </ListGroup>
-    </Card>
-
+    <div class="card" style="width: 18rem; margin: auto ; margin-top: 10px;">
+        <img class="card-img-top" src="https://www.donkey.bike/wp-content/uploads/2020/12/user-member-avatar-face-profile-icon-vector-22965342-e1608640557889.jpg" alt="profile img" />
+        <div class="card-body">
+            <h5 class="card-title"><span th:text="${username}"></span></h5>
+            <p class="card-text"><span th:text="${bio}"></span></p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">First Name: <span th:text="${firstName}"></span></li>
+            <li class="list-group-item">Last Name: <span th:text="${lastName}"></span></li>
+            <li class="list-group-item">Date Of Birth: <span th:text="${dateOfBirth}"></span></li>
+        </ul>
+    </div>
     <div>
-
-
         <form class="px-4 py-3" th:action="@{/addpost}" method="post" style="width: 70%;">
             <div class="form-group">
                 <label for="body" id="body">Type Your Post</label>
@@ -57,21 +27,20 @@
             </div>
             <button type="submit" class="btn btn-warning">Submit</button>
         </form>
-
-
         <div>
             <h3> Your Posts : </h3>
             <ul th:each="post : ${postList}" class="list-group" style="width: 70%;">
                 <li class="list-group-item disabled">Post :<span th:text="${post.body}"></span><br/>
+                <li class="list-group-item disabled">Time :<span th:text="${post.createdAt}"></span><br/>
                 <li class="list-group-item disabled">Posted By :<span th:text="${post.user.username}"></span><br/>
 
                 </li>
                 <br/>
             </ul>
-
         </div>
     </div>
-</div>
-</div>
+    </div>
+</main>
+
 </body>
 </html>

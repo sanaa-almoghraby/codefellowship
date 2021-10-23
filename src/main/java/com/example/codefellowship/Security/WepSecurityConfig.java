@@ -39,4 +39,8 @@ public class WepSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();
 
     }
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder Security) throws Exception {
+//        Security.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+//    }
 }
