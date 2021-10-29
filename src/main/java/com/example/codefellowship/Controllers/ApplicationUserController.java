@@ -56,7 +56,8 @@ public class ApplicationUserController {
 
         return new RedirectView("/login");
     }
-//@PostMapping("/signup")
+
+    //@PostMapping("/signup")
 //public RedirectView signUp(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password, @RequestParam(value = "firstName") String firstName, @RequestParam(value = "lastName") String lastName, @RequestParam(value = "dateOfBirth") String dateOfBirth, @RequestParam(value = "bio") String bio) {
 //    ApplicationUser newUser = new ApplicationUser(username, bCryptPasswordEncoder.encode(password), firstName, lastName, dateOfBirth, bio);
 //    applicationUserRepository.save(newUser);
@@ -81,7 +82,7 @@ public class ApplicationUserController {
         ApplicationUser userProfile = applicationUserRepository.findById(id).get();
         model.addAttribute("username", currentUser.getUsername());
         model.addAttribute("userProfile", userProfile);
-        return "userProfile";
+        return "userProfile.html";
     }
 
 }

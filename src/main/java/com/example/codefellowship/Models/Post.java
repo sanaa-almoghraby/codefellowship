@@ -4,29 +4,32 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String body;
-    private LocalDateTime createdAt = LocalDateTime.now();
+    public String body;
+    private LocalDateTime createAt= LocalDateTime.now();
 
     @ManyToOne
     public ApplicationUser user;
 
-    public Post(){
 
+    public Post() {
     }
 
-    public Post(String body , ApplicationUser user) {
+    public Post(String body, ApplicationUser user) {
         this.body = body;
         this.user = user;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getBody() {
@@ -37,19 +40,30 @@ public class Post {
         this.body = body;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public LocalDateTime getCreateAt() {
+        return createAt;
     }
 
-    public int getId() {
-        return id;
+    public void setCreateAt(LocalDateTime createAt) {
+        this.createAt = createAt;
     }
 
-    public ApplicationUser getUser() {
+    public ApplicationUser getApplicationUser() {
         return user;
     }
 
-    public void setUser(ApplicationUser user) {
-        this.user = user;
+    public void setApplicationUser(ApplicationUser applicationUser) {
+        this.user = applicationUser;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id=" + id +
+                ", body='" + body + '\'' +
+                ", createAt=" + createAt +
+                ", applicationUser=" + user +
+                '}';
     }
 }

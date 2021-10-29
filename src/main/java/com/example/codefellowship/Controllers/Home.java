@@ -38,23 +38,22 @@ public class Home {
 
     @GetMapping("/")
     public String homePage(@AuthenticationPrincipal ApplicationUser user, Model model) {
-
         List<Post> postList = (List<Post>) postRepository.findAll();
 
         if (user != null) {
-            ApplicationUser currentUser = applicationUserRepository.findByUsername(user.getUsername());
-            model.addAttribute("username", currentUser.getUsername());
-
-            List<Post> myFollowingPost = new ArrayList();
+            ApplicationUser findUser = applicationUserRepository.findByUsername(user.getUsername());
+            model.addAttribute("user", findUser.getUsername());
+            List<Post> FollowingPost = new ArrayList();
             for (Post post : postList) {
-                if (!currentUser.getFollowing().contains(post.getUser()) && post.getUser() != currentUser)  myFollowingPost.add(post);
+                if (!findUser.getFollowing().contains(post.getApplicationUser()) && post.getApplicationUser() != findUser)  FollowingPost.add(post);
             }
-            model.addAttribute("postList", myFollowingPost);
+            model.addAttribute("postList", FollowingPost);
         } else {
             model.addAttribute("postList", postList);
         }
         return "home";
     }
+
 
 
     @GetMapping("/profile")
@@ -74,11 +73,12 @@ public class Home {
         return "profile";
     }
     @PostMapping("/follow")
-    public RedirectView printHi(@RequestParam Integer id, @AuthenticationPrincipal ApplicationUser user, Model model) {
+    public RedirectView printHi0(@RequestParam Integer id, @AuthenticationPrincipal ApplicationUser user, Model model) {
         ApplicationUser currentUser = applicationUserRepository.findByUsername(user.getUsername());
         ApplicationUser newFollowing = applicationUserRepository.findById(id).get();
         currentUser.setFollowing(newFollowing);
         applicationUserRepository.save(currentUser);
         return new RedirectView("/");
     }
+
 }
