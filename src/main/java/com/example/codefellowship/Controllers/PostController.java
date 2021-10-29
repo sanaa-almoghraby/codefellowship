@@ -23,6 +23,7 @@ public class PostController {
     PostRepository postRepository;
 
 
+
     @PostMapping("/addpost")
     public RedirectView addPost(@AuthenticationPrincipal ApplicationUser user, @RequestParam String body) {
         ApplicationUser newUser = applicationUserRepository.findByUsername(user.getUsername());

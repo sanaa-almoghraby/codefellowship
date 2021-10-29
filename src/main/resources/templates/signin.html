@@ -9,15 +9,32 @@
 </head>
 <body>
 
-<form action="login" method="POST">
-    <label for="username">User Name</label>
-    <input id="username" name="username" type="text">
+<!--<div th:if="${param.error}">-->
+<!--    Invalid username and password.-->
+<!--</div>-->
+<!--<div th:if="${param.logout}">-->
+<!--    You have been logged out.-->
+<!--</div>-->
+<form action="login" method="post">
+    <div class="mb-3">
+        <label class="form-label">User Name</label>
+        <input type="text" class="form-control" name="username" >
+    </div>
 
-    <label for="password">Password</label>
-    <input id="password" name="password" type="password">
+    <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control" name="password" >
+    </div>
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="dropdownCheck" />
+        <label class="form-check-label" for="dropdownCheck"> Remember me </label>
+    </div>
 
-    <button type="submit">login</button>
+    <button type="submit" class="btn btn-primary">LogIn</button>
 </form>
-
+<footer>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="http://localhost:8080/signup">New around here? Sign up</a>
+</footer>
 </body>
 </html>

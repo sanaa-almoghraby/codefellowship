@@ -3,6 +3,7 @@ package com.example.codefellowship.Security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -14,10 +15,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class WepSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     UserDetailsServicImpl userDetailsService;
+
     @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        return bCryptPasswordEncoder;
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     @Override
@@ -39,4 +40,13 @@ public class WepSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();
 
     }
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder Security) throws Exception {
+//        Security.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+//    }
+@Override
+@Bean
+public AuthenticationManager authenticationManagerBean() throws Exception {
+    return super.authenticationManagerBean();
+}
 }

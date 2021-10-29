@@ -4,19 +4,17 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 @Entity
-@Table(name = "userdata")
+@Table (name = "data")
 public class ApplicationUser implements UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     @Column(unique = true)
     private String username;
-
     private String password;
     private String firstName;
     private String lastName;
@@ -24,10 +22,16 @@ public class ApplicationUser implements UserDetails {
     private String bio;
 
     @OneToMany(mappedBy = "user")
-    private List<Post> postList;
+    private List <Post> postList;
 
-    public ApplicationUser() {
-    }
+    @ManyToMany (fetch = FetchType.EAGER)
+    @JoinTable(name = "following_follower" , joinColumns = {@JoinColumn(name = "following_id")} , inverseJoinColumns = {@JoinColumn(name = "follower_id")})
+    private Set<ApplicationUser> following = new HashSet<>();
+
+    @ManyToMany (fetch = FetchType.EAGER)
+    @JoinTable(name = "following_follower" , joinColumns = {@JoinColumn(name = "follower_id")} , inverseJoinColumns = {@JoinColumn(name = "following_id")})
+    private List<ApplicationUser> myFollowers = new ArrayList<>();
+    public ApplicationUser(){}
 
     public ApplicationUser(String username, String password, String firstName, String lastName, String dateOfBirth, String bio) {
         this.username = username;
@@ -38,21 +42,20 @@ public class ApplicationUser implements UserDetails {
         this.bio = bio;
     }
 
+
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-
         return null;
     }
 
     @Override
     public String getPassword() {
-
         return password;
     }
 
     @Override
-    public String getUsername()
-    {
+    public String getUsername() {
         return username;
     }
 
@@ -80,6 +83,9 @@ public class ApplicationUser implements UserDetails {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public void setUsername(String username) {
         this.username = username;
@@ -120,6 +126,7 @@ public class ApplicationUser implements UserDetails {
     public void setBio(String bio) {
         this.bio = bio;
     }
+
     public List<Post> getPostList() {
         return postList;
     }
@@ -128,6 +135,27 @@ public class ApplicationUser implements UserDetails {
         this.postList = postList;
     }
 
+    public Set<ApplicationUser> getFollowing() {
+        return following;
+    }
 
+    public void setFollowing(ApplicationUser newFollowing) {
+        this.following.add(newFollowing);
+    }
+
+    public List<ApplicationUser> getMyFollowers() {
+        return myFollowers;
+    }
+    @Override
+    public String toString() {
+        return "ApplicationUser{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
+                ", bio='" + bio + '\'' +
+                '}';
+    }
 }
-
